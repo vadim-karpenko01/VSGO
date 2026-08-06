@@ -21,6 +21,7 @@ export const ROUTE_OFFICES = "/offices" as const;
 export const ROUTE_LEGISLATION = "/legislation" as const;
 export const ROUTE_ACTIVITIES = "/activities" as const;
 export const ROUTE_GALLERY = "/gallery" as const;
+export const ROUTE_ADMIN = "/admin" as const;
 export const ROUTE_NEWS = "/news" as const;
 export const ROUTE_CONTACTS = "/contacts" as const;
 export const ROUTE_STATUS = "/status" as const;

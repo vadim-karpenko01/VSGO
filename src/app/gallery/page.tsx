@@ -5,7 +5,7 @@ import {
   PageHeading,
   PageCard,
 } from "@/components/home/PageChrome";
-import { GalleryGrid } from "@/components/home/GalleryGrid";
+import { GalleryAdminClient } from "@/components/gallery/GalleryAdminClient";
 import { GALLERY_IMAGES } from "@/lib/gallery";
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function Page() {
     <PageShell>
       <PageHeading title="Фотогалерея" icon={Camera} />
       <PageCard className="p-3 sm:p-4 md:p-5">
-        <GalleryGrid images={GALLERY_IMAGES} />
+        <GalleryAdminClient baseImages={GALLERY_IMAGES} />
       </PageCard>
     </PageShell>
   );

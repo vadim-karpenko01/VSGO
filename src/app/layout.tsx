@@ -14,6 +14,8 @@ import { MobileChrome } from "@/components/home/MobileChrome";
 import { Sidebar } from "@/components/home/Sidebar";
 import { Footer } from "@/components/home/Footer";
 import { SidebarSearchProvider } from "@/context/SidebarSearchContext";
+import { AdminLoginProvider } from "@/context/AdminLoginContext";
+import { AdminLoginDialog } from "@/components/gallery/AdminLoginDialog";
 
 const eUkraine = localFont({
   src: [
@@ -148,21 +150,24 @@ export default function RootLayout({
             storageKey={THEME_STORAGE_KEY}
           >
             <SidebarSearchProvider>
-              <div className="flex min-h-screen min-w-0 flex-col overflow-x-hidden">
-                <MobileChrome />
-                <div className="mx-auto w-full min-w-0 max-w-[1600px] flex-1 px-3 pt-4 pb-8 sm:px-4 sm:pt-5">
-                  <div className="grid min-w-0 grid-cols-12 gap-4 sm:gap-5">
-                    <aside className="hidden lg:col-span-3 lg:block">
-                      <Sidebar />
-                    </aside>
-                    <div className="col-span-12 min-w-0 lg:col-span-9">
-                      <TooltipProvider>{children}</TooltipProvider>
+              <AdminLoginProvider>
+                <div className="flex min-h-screen min-w-0 flex-col overflow-x-hidden">
+                  <MobileChrome />
+                  <div className="mx-auto w-full min-w-0 max-w-[1600px] flex-1 px-3 pt-4 pb-8 sm:px-4 sm:pt-5">
+                    <div className="grid min-w-0 grid-cols-12 gap-4 sm:gap-5">
+                      <aside className="hidden lg:col-span-3 lg:block">
+                        <Sidebar />
+                      </aside>
+                      <div className="col-span-12 min-w-0 lg:col-span-9">
+                        <TooltipProvider>{children}</TooltipProvider>
+                      </div>
                     </div>
                   </div>
+                  <Footer />
                 </div>
-                <Footer />
-              </div>
-              <Toaster />
+                <AdminLoginDialog />
+                <Toaster />
+              </AdminLoginProvider>
             </SidebarSearchProvider>
           </ThemeProvider>
         </TanstackQueryClientProvider>
