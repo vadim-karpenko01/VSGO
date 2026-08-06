@@ -33,7 +33,7 @@ A modern web platform for biobanks, hospitals, researchers, and patients to uplo
 - **Patient/General User:** Browse educational content, find doctors/hospitals, and sign up for updates.
 - **System Admin:** Oversee all biobanks, hospitals, users, and analyses. Manage platform-wide data and compliance.
 
-## 📝 Metadata & Data Structure
+## 📝 Metadata && Data Structure
 ### Bacteria Metadata
 - Name, Isolation Source, Geographic Origin, Host Species, Sample Type, Origin of Infection, Time of Isolation, Co-infection Status, Strain, Biosafety Level, Previous Use, Storage & Growth Conditions, and more.
 
