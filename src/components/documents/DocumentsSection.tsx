@@ -166,39 +166,38 @@ export function DocumentsSection({
         <PageCard className="p-6 text-center text-gray-500">{emptyLabel}</PageCard>
       ) : null}
 
-      {!loading
-        ? documents.map((doc) => (
-            <PageCard key={`${doc.id}-${doc.file_path}`}>
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-3 sm:px-5">
-                <p className="font-semibold text-[var(--brand-heading)]">
-                  {doc.title}
-                </p>
-                {isAdmin && doc.id > 0 ? (
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant="outline"
-                    disabled={busy}
-                    onClick={() => handleDelete(doc)}
-                    className="text-red-600 hover:bg-red-50 hover:text-red-700 dark:hover:bg-red-950/30"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                    Видалити
-                  </Button>
-                ) : null}
+      {!loading &&
+        documents.map((doc) => (
+          <PageCard key={`${doc.id}-${doc.file_path}`}>
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-3 sm:px-5">
+              <p className="font-semibold text-[var(--brand-heading)]">
+                {doc.title}
+              </p>
+              {isAdmin && doc.id > 0 ? (
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  disabled={busy}
+                  onClick={() => handleDelete(doc)}
+                  className="text-red-600 hover:bg-red-50 hover:text-red-700 dark:hover:bg-red-950/30"
+                >
+                  <Trash2 className="h-4 w-4" />
+                  Видалити
+                </Button>
+              ) : null}
+            </div>
+            <div className="flex min-h-[800px] items-center justify-center bg-gray-50 p-4 md:p-6 dark:bg-gray-950">
+              <div className="w-full max-w-5xl overflow-hidden rounded-lg border border-border bg-white shadow-sm dark:bg-gray-100">
+                <iframe
+                  src={documentUrl(doc)}
+                  title={doc.title}
+                  className="h-[80vh] w-full"
+                />
               </div>
-              <div className="flex min-h-[800px] items-center justify-center bg-gray-50 p-4 md:p-6 dark:bg-gray-950">
-                <div className="w-full max-w-5xl overflow-hidden rounded-lg border border-border bg-white shadow-sm dark:bg-gray-100">
-                  <iframe
-                    src={documentUrl(doc)}
-                    title={doc.title}
-                    className="h-[80vh] w-full"
-                  />
-                </div>
-              </div>
-            </PageCard>
-          ))
-        : null}
+            </div>
+          </PageCard>
+        ))}
     </div>
   );
 }

@@ -68,7 +68,7 @@ const FALLBACK_DOCUMENTS: Record<DocumentSection, SiteDocument[]> = {
 function sanitizeFileName(name: string) {
   return name
     .normalize("NFKD")
-    .replace(/[^\w.\-]+/g, "_")
+    .replace(/[^\w.-]+/g, "_")
     .replace(/_+/g, "_")
     .slice(0, 120);
 }
