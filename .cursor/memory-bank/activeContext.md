@@ -13,3 +13,4 @@
 - Mobile: `overflow-x-hidden` on html/body/layout; tighter px-3 padding; header title wraps until lg; gallery stays 2 cols until md.
 - Offices UI (map panel + list cards) shows org name and address only — no phones / «Подзвонити».
 - Map: `ЧЕРНІВЦІ` label + yellow dot shifted slightly up; Odessa yellow dot sits below the `ОДЕСА` label.
+- Documents PDFs: `/members` + `/legislation` load from Supabase `documents` + Storage. Mock admin can upload/delete. Needs NEXT_PUBLIC_SUPABASE_URL + ANON_KEY and RLS.
