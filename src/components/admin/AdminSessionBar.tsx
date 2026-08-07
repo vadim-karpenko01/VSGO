@@ -15,9 +15,16 @@ export function AdminSessionBar() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setSession(getSession());
-    setReady(true);
-    return onAuthChange(setSession);
+    let active = true;
+    void getSession().then((next) => {
+      if (!active) return;
+      setSession(next);
+      setReady(true);
+    });
+    return onAuthChange((next) => {
+      setSession(next);
+      setReady(true);
+    });
   }, []);
 
   if (!ready || !session) return null;

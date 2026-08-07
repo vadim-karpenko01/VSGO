@@ -24,9 +24,16 @@ export default function AdminPage() {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    setSession(getSession());
-    setReady(true);
-    return onAuthChange(setSession);
+    let active = true;
+    void getSession().then((next) => {
+      if (!active) return;
+      setSession(next);
+      setReady(true);
+    });
+    return onAuthChange((next) => {
+      setSession(next);
+      setReady(true);
+    });
   }, []);
 
   const handleSignIn = async (event: FormEvent) => {
@@ -94,7 +101,7 @@ export default function AdminPage() {
           Вхід для адміністратора
         </h1>
         <p className="text-base text-gray-500 dark:text-gray-400">
-          Увійдіть, щоб редагувати галерею та PDF-документи.
+          Увійдіть через обліковий запис адміністратора (Supabase Auth).
         </p>
       </div>
 

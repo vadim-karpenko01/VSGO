@@ -39,9 +39,20 @@ export function GalleryAdminClient({
 
   useEffect(() => {
     setImages(loadGalleryImages(baseImages));
-    setSession(getSession());
-    setReady(true);
-    return onAuthChange(setSession);
+    let active = true;
+    void getSession().then((next) => {
+      if (!active) return;
+      setSession(next);
+      setReady(true);
+    });
+    const unsubscribe = onAuthChange((next) => {
+      setSession(next);
+      setReady(true);
+    });
+    return () => {
+      active = false;
+      unsubscribe();
+    };
   }, [baseImages]);
 
   const isAdmin = Boolean(session);

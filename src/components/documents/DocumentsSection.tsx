@@ -49,10 +49,16 @@ export function DocumentsSection({
   };
 
   useEffect(() => {
-    setSession(getSession());
+    let active = true;
+    void getSession().then((next) => {
+      if (active) setSession(next);
+    });
     const unsubscribe = onAuthChange(setSession);
     void reload();
-    return unsubscribe;
+    return () => {
+      active = false;
+      unsubscribe();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [section]);
 
