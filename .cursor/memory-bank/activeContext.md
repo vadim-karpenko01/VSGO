@@ -14,3 +14,5 @@
 - Offices UI (map panel + list cards) shows org name and address only — no phones / «Подзвонити».
 - Map: `ЧЕРНІВЦІ` label + yellow dot shifted slightly up; Odessa yellow dot sits below the `ОДЕСА` label.
 - Documents PDFs: `/members` + `/legislation` load from Supabase `documents` + Storage. Mock admin can upload/delete. Needs NEXT_PUBLIC_SUPABASE_URL + ANON_KEY and RLS.
+- Admin login is a dedicated `/admin` page (no modal). After login redirects to home; `AdminSessionBar` shows editable links (gallery, members PDF, legislation PDF) + sign out. Footer «Адмін» links to `/admin`.
+- No public «Адмін» link on the site; login only via direct URL `/admin`.
