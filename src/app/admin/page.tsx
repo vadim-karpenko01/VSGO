@@ -101,7 +101,7 @@ export default function AdminPage() {
           Вхід для адміністратора
         </h1>
         <p className="text-base text-gray-500 dark:text-gray-400">
-          Увійдіть через обліковий запис адміністратора (Supabase Auth).
+          Увійдіть через обліковий запис адміністратора.
         </p>
       </div>
 

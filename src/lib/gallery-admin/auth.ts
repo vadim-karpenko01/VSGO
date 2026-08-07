@@ -67,6 +67,23 @@ export async function getSession(): Promise<GalleryAdminSession> {
   return fromSupabaseSession(data.session);
 }
 
+function mapAuthErrorMessage(message: string): string {
+  const normalized = message.toLowerCase();
+  if (
+    normalized.includes("invalid login credentials") ||
+    normalized.includes("invalid_credentials")
+  ) {
+    return "Невірна електронна пошта або пароль";
+  }
+  if (normalized.includes("email not confirmed")) {
+    return "Електронну пошту не підтверджено";
+  }
+  if (normalized.includes("too many requests")) {
+    return "Забагато спроб. Спробуйте пізніше";
+  }
+  return "Не вдалося увійти. Перевірте дані та спробуйте ще раз";
+}
+
 export async function signIn(
   email: string,
   password: string,
@@ -75,8 +92,7 @@ export async function signIn(
   if (!supabase) {
     return {
       session: null,
-      error:
-        "Supabase не налаштовано. Додайте NEXT_PUBLIC_SUPABASE_URL і ANON_KEY.",
+      error: "Авторизацію не налаштовано. Зверніться до розробника.",
     };
   }
 
@@ -90,7 +106,7 @@ export async function signIn(
   if (error) {
     return {
       session: null,
-      error: error.message || "Невірна електронна пошта або пароль",
+      error: mapAuthErrorMessage(error.message),
     };
   }
 
