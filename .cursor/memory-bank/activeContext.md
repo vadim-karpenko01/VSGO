@@ -16,4 +16,4 @@
 - Documents PDFs: `/members` + `/legislation` load from Supabase `documents` + Storage. Mock admin can upload/delete. Needs NEXT_PUBLIC_SUPABASE_URL + ANON_KEY and RLS.
 - Admin login is a dedicated `/admin` page (no modal). After login redirects to home; `AdminSessionBar` shows editable links (gallery, members PDF, legislation PDF) + sign out. Footer «Адмін» links to `/admin`.
 - No public «Адмін» link on the site; login only via direct URL `/admin`.
-- Admin auth uses Supabase Auth (email/password user in dashboard), not mock localStorage. Optional NEXT_PUBLIC_ADMIN_EMAILS allowlist. Login at `/admin` on vsgo-three.vercel.app.
+- Mobile menu: scrollable nav (`overflow-y-auto`) so expanded accordions don’t hide bottom items.

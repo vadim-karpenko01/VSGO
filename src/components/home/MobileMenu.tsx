@@ -74,13 +74,16 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const pathname = usePathname();
 
   return (
-    <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent side="left" className="w-80 bg-white dark:bg-background">
-        <SheetHeader>
+    <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <SheetContent
+        side="left"
+        className="flex h-full w-80 flex-col gap-0 overflow-hidden bg-white p-0 dark:bg-background"
+      >
+        <SheetHeader className="shrink-0 border-b border-border px-4 py-4 pr-12">
           <SheetTitle className="text-[var(--brand-primary)]">Меню</SheetTitle>
         </SheetHeader>
 
-        <nav className="space-y-2 mt-6">
+        <nav className="min-h-0 flex-1 space-y-2 overflow-y-auto overscroll-contain px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
           {menuItems.map((item, index) => {
             const Icon = item.icon;
             if (item.expandable) {
@@ -112,7 +115,10 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                             onClick={onClose}
                           >
                             <Link href={sub.href}>
-                              <SubIcon className="h-4 w-4 shrink-0" strokeWidth={2.4} />
+                              <SubIcon
+                                className="h-4 w-4 shrink-0"
+                                strokeWidth={2.4}
+                              />
                               <span className="text-left leading-tight">
                                 {sub.label}
                               </span>
@@ -143,7 +149,10 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   aria-current={isActive ? "page" : undefined}
                   className="flex w-full items-start gap-3"
                 >
-                  <Icon className="mt-[2px] h-5 w-5 shrink-0" strokeWidth={2.4} />
+                  <Icon
+                    className="mt-[2px] h-5 w-5 shrink-0"
+                    strokeWidth={2.4}
+                  />
                   <span className="flex-1 text-left break-words whitespace-normal">
                     {item.label}
                   </span>
