@@ -77,33 +77,35 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <SheetContent
         side="left"
-        className="flex h-full w-80 flex-col gap-0 overflow-hidden bg-white p-0 dark:bg-background"
+        className="flex h-dvh max-h-dvh w-[min(20rem,85vw)] max-w-[85vw] flex-col gap-0 overflow-hidden overscroll-none bg-white p-0 dark:bg-background sm:max-w-sm"
       >
         <SheetHeader className="shrink-0 border-b border-border px-4 py-4 pr-12">
           <SheetTitle className="text-[var(--brand-primary)]">Меню</SheetTitle>
         </SheetHeader>
 
-        <nav className="min-h-0 flex-1 space-y-2 overflow-y-auto overscroll-contain px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+        <nav className="min-h-0 flex-1 touch-pan-y space-y-2 overflow-y-auto overflow-x-hidden overscroll-y-contain px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
           {menuItems.map((item, index) => {
             const Icon = item.icon;
             if (item.expandable) {
               return (
-                <div key={index} className="space-y-1">
+                <div key={index} className="min-w-0 space-y-1">
                   <Button
                     variant="ghost"
-                    className="h-auto w-full justify-start gap-3 px-4 py-3 font-black text-[var(--brand-primary)] hover:bg-[var(--brand-primary-10)]"
+                    className="h-auto w-full max-w-full justify-start gap-3 px-4 py-3 font-black text-[var(--brand-primary)] hover:bg-[var(--brand-primary-10)]"
                     onClick={() => setOpenAbout((v) => !v)}
                   >
                     <Icon className="h-5 w-5 shrink-0" strokeWidth={2.4} />
-                    <span className="flex-1 text-left">Про Конфедерацію</span>
+                    <span className="min-w-0 flex-1 text-left break-words whitespace-normal">
+                      Про Конфедерацію
+                    </span>
                     {openAbout ? (
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown className="h-4 w-4 shrink-0" />
                     ) : (
-                      <ChevronRight className="h-4 w-4" />
+                      <ChevronRight className="h-4 w-4 shrink-0" />
                     )}
                   </Button>
                   {openAbout && (
-                    <div className="space-y-1">
+                    <div className="min-w-0 space-y-1 border-l-2 border-[var(--brand-primary)]/20 pl-3">
                       {aboutItems.map((sub, i) => {
                         const SubIcon = sub.icon;
                         return (
@@ -111,15 +113,15 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                             asChild
                             key={i}
                             variant="ghost"
-                            className="ml-6 h-auto w-full justify-start gap-3 px-4 py-2 text-base font-black text-[var(--brand-primary)] hover:bg-[var(--brand-primary-10)]"
+                            className="h-auto w-full max-w-full justify-start gap-3 px-3 py-2 text-base font-black text-[var(--brand-primary)] hover:bg-[var(--brand-primary-10)]"
                             onClick={onClose}
                           >
-                            <Link href={sub.href}>
+                            <Link href={sub.href} className="min-w-0">
                               <SubIcon
                                 className="h-4 w-4 shrink-0"
                                 strokeWidth={2.4}
                               />
-                              <span className="text-left leading-tight">
+                              <span className="min-w-0 flex-1 text-left leading-tight break-words whitespace-normal">
                                 {sub.label}
                               </span>
                             </Link>
@@ -137,7 +139,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 asChild
                 key={index}
                 variant={isActive ? "default" : "ghost"}
-                className={`h-auto w-full justify-start gap-3 px-4 py-3 font-black ${
+                className={`h-auto w-full max-w-full justify-start gap-3 px-4 py-3 font-black ${
                   isActive
                     ? "bg-gradient-to-r from-[var(--brand-surface)] to-[var(--brand-secondary)] text-white hover:from-[color-mix(in_oklab,var(--brand-surface)_90%,transparent)] hover:to-[color-mix(in_oklab,var(--brand-secondary)_90%,transparent)]"
                     : "text-[var(--brand-primary)] hover:bg-[var(--brand-primary-10)]"
@@ -147,13 +149,13 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <Link
                   href={item.href ?? "/"}
                   aria-current={isActive ? "page" : undefined}
-                  className="flex w-full items-start gap-3"
+                  className="flex w-full min-w-0 items-start gap-3"
                 >
                   <Icon
                     className="mt-[2px] h-5 w-5 shrink-0"
                     strokeWidth={2.4}
                   />
-                  <span className="flex-1 text-left break-words whitespace-normal">
+                  <span className="min-w-0 flex-1 text-left break-words whitespace-normal">
                     {item.label}
                   </span>
                 </Link>

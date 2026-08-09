@@ -16,4 +16,4 @@
 - Documents PDFs: `/members` + `/legislation` load from Supabase `documents` + Storage. Mock admin can upload/delete. Needs NEXT_PUBLIC_SUPABASE_URL + ANON_KEY and RLS.
 - Admin login is a dedicated `/admin` page (no modal). After login redirects to home; `AdminSessionBar` shows editable links (gallery, members PDF, legislation PDF) + sign out. Footer «Адмін» links to `/admin`.
 - No public «Адмін» link on the site; login only via direct URL `/admin`.
-- Mobile menu: scrollable nav (`overflow-y-auto`) so expanded accordions don’t hide bottom items.
+- Mobile menu: vertical-only scroll (`overflow-x-hidden`, `touch-pan-y`); submenu indent via padding (not `ml-6`+`w-full`) to avoid horizontal swipe.
